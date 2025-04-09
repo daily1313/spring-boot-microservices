@@ -2,8 +2,8 @@ package board.article.service;
 
 import board.article.entity.Article;
 import board.article.repository.ArticleRepository;
-import board.article.service.Response.ArticlePageResponse;
-import board.article.service.Response.ArticleResponse;
+import board.article.service.response.ArticlePageResponse;
+import board.article.service.response.ArticleResponse;
 import board.article.service.request.ArticleCreateRequest;
 import board.article.service.request.ArticleUpdateRequest;
 import board.common.snowflake.Snowflake;

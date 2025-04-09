@@ -1,4 +1,4 @@
-package board.article.service.Response;
+package board.article.service.response;
 
 import board.article.entity.Article;
 import lombok.Getter;

@@ -1,7 +1,7 @@
 package board.article.api;
 
-import board.article.service.Response.ArticlePageResponse;
-import board.article.service.Response.ArticleResponse;
+import board.article.service.response.ArticlePageResponse;
+import board.article.service.response.ArticleResponse;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.junit.jupiter.api.Test;
