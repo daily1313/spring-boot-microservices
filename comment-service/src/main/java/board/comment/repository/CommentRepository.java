@@ -27,9 +27,9 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
 
     @Query(
             value = "select comment.comment_id, comment.content, comment.parent_comment_id, comment.article_id, " +
-                    "comment.wrtier_id, comment.deleted, comment.created_at " +
+                    "comment.writer_id, comment.deleted, comment.created_at " +
                     "from (" +
-                    "   select comment_id from comment where article_id :articleId " +
+                    "   select comment_id from comment where article_id = :articleId " +
                     "   order by parent_comment_id asc, comment_id asc " +
                     "   limit :limit offset :offset " +
                     ") t left join comment on t.comment_id = comment.comment_id",
@@ -54,7 +54,7 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
 
     @Query(
             value = "select comment.comment_id, comment.content, comment.parent_comment_id, comment.article_id, " +
-                    "comment.wrtier_id, comment.deleted, comment.created_at " +
+                    "comment.writer_id, comment.deleted, comment.created_at " +
                     "from comment " +
                     "where article_id = :articleId " +
                     "order by parent_comment_id asc, comment_id asc " +
@@ -68,7 +68,7 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
 
     @Query(
             value = "select comment.comment_id, comment.content, comment.parent_comment_id, comment.article_id, " +
-                    "comment.wrtier_id, comment.deleted, comment.created_at " +
+                    "comment.writer_id, comment.deleted, comment.created_at " +
                     "from comment " +
                     "where article_id = :articleId and (" +
                     "   parent_comment_id > :lastParentCommentId or" +
