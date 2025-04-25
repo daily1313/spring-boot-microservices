@@ -1,6 +1,7 @@
 package board.comment.service.response;
 
 import board.comment.entity.Comment;
+import board.comment.entity.CommentV2;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -24,6 +25,8 @@ public class CommentResponse {
 
     private LocalDateTime createdAt;
 
+    private String path;
+
     public static CommentResponse from(Comment comment) {
         CommentResponse response = new CommentResponse();
         response.commentId = comment.getCommentId();
@@ -35,4 +38,18 @@ public class CommentResponse {
         response.createdAt = comment.getCreatedAt();
         return response;
     }
+
+    public static CommentResponse from(CommentV2 comment) {
+        CommentResponse response = new CommentResponse();
+        response.commentId = comment.getCommentId();
+        response.content = comment.getContent();
+        response.path = comment.getCommentPath().getPath();
+        response.articleId = comment.getArticleId();
+        response.writerId = comment.getWriterId();
+        response.deleted = comment.getDeleted();
+        response.createdAt = comment.getCreatedAt();
+        return response;
+    }
+
+
 }
