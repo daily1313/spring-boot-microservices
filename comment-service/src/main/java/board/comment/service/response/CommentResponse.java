@@ -50,6 +50,4 @@ public class CommentResponse {
         response.createdAt = comment.getCreatedAt();
         return response;
     }
-
-
 }

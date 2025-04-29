@@ -104,8 +104,6 @@ public class CommentApiV2Test {
         }
     }
 
-
-
     @Getter
     @AllArgsConstructor
     public static class CommentCreateRequestV2 {
