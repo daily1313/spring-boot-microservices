@@ -56,9 +56,7 @@ public class ArticleService {
     public void delete(Long articleId) {
         Article article = articleRepository.findById(articleId).orElseThrow();
         articleRepository.delete(article);
-        System.out.println("article = " + article);
-        int count = boardArticleCountRepository.decrease(article.getBoardId());
-        System.out.println("count = " + count);
+        boardArticleCountRepository.decrease(article.getBoardId());
     }
 
     public ArticlePageResponse readAll(Long boardId, Long page, Long pageSize) {
