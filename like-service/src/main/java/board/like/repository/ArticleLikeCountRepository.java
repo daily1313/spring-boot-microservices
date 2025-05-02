@@ -31,8 +31,4 @@ public interface ArticleLikeCountRepository extends JpaRepository<ArticleLikeCou
             nativeQuery = true
     )
     int decrease(@Param("articleId") Long articleId);
-
-    @Modifying
-    @Query("DELETE FROM ArticleLike al WHERE al.articleId = :articleId AND al.userId = :userId")
-    int deleteByArticleIdAndUserId(@Param("articleId") Long articleId, @Param("userId") Long userId);
 }
