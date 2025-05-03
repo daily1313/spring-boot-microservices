@@ -1,12 +1,10 @@
 package board.article.entity;
 
+import board.common.auditing.AbstractEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -15,7 +13,7 @@ import java.time.LocalDateTime;
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class Article {
+public class Article extends AbstractEntity {
 
     @Id
     private Long articleId;
@@ -23,24 +21,21 @@ public class Article {
     private String content;
     private Long boardId;
     private Long writerId;
-    private LocalDateTime createdAt;
-    private LocalDateTime modifiedAt;
+
+    private Article(Long articleId, String title, String content, Long writerId, Long boardId) {
+        this.articleId = articleId;
+        this.title = title;
+        this.content = content;
+        this.boardId = boardId;
+        this.writerId = writerId;
+    }
 
     public static Article create(Long articleId, String title, String content, Long writerId, Long boardId) {
-        Article article = new Article();
-        article.articleId = articleId;
-        article.title = title;
-        article.content = content;
-        article.boardId = boardId;
-        article.writerId = writerId;
-        article.createdAt = LocalDateTime.now();
-        article.modifiedAt = article.createdAt;
-        return article;
+        return new Article(articleId, title, content, writerId, boardId);
     }
 
     public void update(String title, String content) {
         this.title = title;
         this.content = content;
-        modifiedAt = LocalDateTime.now();
     }
 }
