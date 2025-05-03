@@ -2,14 +2,12 @@ package board.comment.service.response;
 
 import board.comment.entity.Comment;
 import board.comment.entity.CommentV2;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString
 @Getter
 public class CommentResponse {
