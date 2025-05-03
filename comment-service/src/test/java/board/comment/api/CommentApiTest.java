@@ -41,7 +41,7 @@ public class CommentApiTest {
     @Test
     void read() {
         CommentResponse response = restClient.get()
-                .uri("/v1/comments/{commentId}", 172237412403634176L)
+                .uri("/v1/comments/{commentId}", 176933950176829440L)
                 .retrieve()
                 .body(CommentResponse.class);
 
@@ -55,7 +55,7 @@ public class CommentApiTest {
 //        commentId=172237413162803200L
 
         restClient.delete()
-                .uri("/v1/comments/{commentId}", 172237413162803200L)
+                .uri("/v1/comments/{commentId}", 176933950176829440L)
                 .retrieve();
     }
 

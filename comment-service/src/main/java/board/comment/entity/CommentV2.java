@@ -1,5 +1,6 @@
 package board.comment.entity;
 
+import board.common.auditing.AbstractEntity;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -17,7 +18,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "comment_v2")
 @Entity
-public class CommentV2 {
+public class CommentV2 extends AbstractEntity {
 
     @Id
     private Long commentId;
@@ -33,18 +34,17 @@ public class CommentV2 {
 
     private Boolean deleted;
 
-    private LocalDateTime createdAt;
+    private CommentV2(Long commentId, String content, Long articleId, Long writerId, CommentPath commentPath, boolean deleted) {
+        this.commentId = commentId;
+        this.content = content;
+        this.articleId = articleId;
+        this.writerId = writerId;
+        this.commentPath = commentPath;
+        this.deleted = deleted;
+    }
 
     public static CommentV2 create(Long commentId, String content, Long articleId, Long writerId, CommentPath commentPath) {
-        CommentV2 comment = new CommentV2();
-        comment.commentId = commentId;
-        comment.content = content;
-        comment.articleId = articleId;
-        comment.writerId = writerId;
-        comment.commentPath = commentPath;
-        comment.deleted = false;
-        comment.createdAt = LocalDateTime.now();
-        return comment;
+        return new CommentV2(commentId, content, articleId, writerId, commentPath, false);
     }
 
     public boolean isRoot() {

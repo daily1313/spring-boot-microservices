@@ -2,11 +2,14 @@ package board.comment.service.response;
 
 import board.comment.entity.Comment;
 import board.comment.entity.CommentV2;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.time.LocalDateTime;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
 @Getter
 public class CommentResponse {
@@ -27,27 +30,47 @@ public class CommentResponse {
 
     private String path;
 
+    private CommentResponse(Long commentId, String content, Long parentCommentId, Long articleId, Long writerId, Boolean deleted, LocalDateTime createdAt) {
+        this.commentId = commentId;
+        this.content = content;
+        this.parentCommentId = parentCommentId;
+        this.articleId = articleId;
+        this.writerId = writerId;
+        this.deleted = deleted;
+        this.createdAt = createdAt;
+    }
+
+    private CommentResponse(Long commentId, String content, String path, Long articleId, Long writerId, Boolean deleted, LocalDateTime createdAt) {
+        this.commentId = commentId;
+        this.content = content;
+        this.path = path;
+        this.articleId = articleId;
+        this.writerId = writerId;
+        this.deleted = deleted;
+        this.createdAt = createdAt;
+    }
+
     public static CommentResponse from(Comment comment) {
-        CommentResponse response = new CommentResponse();
-        response.commentId = comment.getCommentId();
-        response.content = comment.getContent();
-        response.parentCommentId = comment.getParentCommentId();
-        response.articleId = comment.getArticleId();
-        response.writerId = comment.getWriterId();
-        response.deleted = comment.getDeleted();
-        response.createdAt = comment.getCreatedAt();
-        return response;
+        return new CommentResponse(
+                comment.getCommentId(),
+                comment.getContent(),
+                comment.getParentCommentId(),
+                comment.getArticleId(),
+                comment.getWriterId(),
+                comment.getDeleted(),
+                comment.getCreatedAt()
+        );
     }
 
     public static CommentResponse from(CommentV2 comment) {
-        CommentResponse response = new CommentResponse();
-        response.commentId = comment.getCommentId();
-        response.content = comment.getContent();
-        response.path = comment.getCommentPath().getPath();
-        response.articleId = comment.getArticleId();
-        response.writerId = comment.getWriterId();
-        response.deleted = comment.getDeleted();
-        response.createdAt = comment.getCreatedAt();
-        return response;
+        return new CommentResponse(
+                comment.getCommentId(),
+                comment.getContent(),
+                comment.getCommentPath().getPath(),
+                comment.getArticleId(),
+                comment.getWriterId(),
+                comment.getDeleted(),
+                comment.getCreatedAt()
+        );
     }
 }
