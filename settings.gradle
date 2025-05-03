@@ -2,6 +2,7 @@ rootProject.name = 'spring-boot-microservices'
 
 include 'board-common'
 include 'board-common:snowflake'
+include 'board-common:auditing'
 include 'article-service'
 include 'comment-service'
 include 'view-service'
