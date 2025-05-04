@@ -20,10 +20,12 @@ public class ArticleCommentCount {
 
     private Long commentCount;
 
+    private ArticleCommentCount(Long articleId, Long commentCount) {
+        this.articleId = articleId;
+        this.commentCount = commentCount;
+    }
+
     public static ArticleCommentCount init(Long articleId, Long commentCount) {
-        ArticleCommentCount articleCommentCount = new ArticleCommentCount();
-        articleCommentCount.articleId = articleId;
-        articleCommentCount.commentCount = commentCount;
-        return articleCommentCount;
+        return new ArticleCommentCount(articleId, commentCount);
     }
 }
