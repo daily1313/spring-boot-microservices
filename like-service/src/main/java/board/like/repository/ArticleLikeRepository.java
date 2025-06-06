@@ -16,5 +16,5 @@ public interface ArticleLikeRepository extends JpaRepository<ArticleLike, Long> 
 
     @Modifying
     @Query("delete from ArticleLike al where al.articleId = :articleId and al.userId = :userId")
-    int deleteByArticleIdAndUserId(@Param("articleId") Long articleId, @Param("userId") Long userId);
+    int deleteIfExistsByArticleIdAndUserId(@Param("articleId") Long articleId, @Param("userId") Long userId);
 }

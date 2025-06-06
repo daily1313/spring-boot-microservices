@@ -48,10 +48,10 @@ public class ArticleLikeService {
 
     @Transactional
     public void unlikePessimisticLock1(Long articleId, Long userId) {
-        int deletedCount = articleLikeRepository.deleteByArticleIdAndUserId(articleId, userId);
+        int deletedLikeCount = articleLikeRepository.deleteIfExistsByArticleIdAndUserId(articleId, userId);
 
-        if (deletedCount == 0) {
-            throw new IllegalStateException("already unlike logic");
+        if (deletedLikeCount == 0) {
+            throw new IllegalStateException("fail to cancel like - already unliked");
         }
 
         articleLikeCountRepository.decrease(articleId);
@@ -77,10 +77,10 @@ public class ArticleLikeService {
 
     @Transactional
     public void unlikePessimisticLock2(Long articleId, Long userId) {
-        int deletedCount = articleLikeRepository.deleteByArticleIdAndUserId(articleId, userId);
+        int deletedLikeCount = articleLikeRepository.deleteIfExistsByArticleIdAndUserId(articleId, userId);
 
-        if (deletedCount == 0) {
-            throw new IllegalStateException("already unlike logic");
+        if (deletedLikeCount == 0) {
+            throw new IllegalStateException("fail to cancel like - already unliked");
         }
 
         ArticleLikeCount articleLikeCount = articleLikeCountRepository.findLockedByArticleId(articleId).orElseThrow();
