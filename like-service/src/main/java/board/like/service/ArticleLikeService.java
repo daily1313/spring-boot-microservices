@@ -26,7 +26,7 @@ public class ArticleLikeService {
     }
 
     /**
-     *  update (Pessimistic Lock 1)
+     *  update (Pessimistic Lock 1) (DB level Lock)
      */
     @Transactional
     public void likePessimisticLock1(Long articleId, Long userId) {
