@@ -19,10 +19,12 @@ public class ArticleViewCount {
     private Long articleId; // Shard Key
     private Long viewCount;
 
+    private ArticleViewCount(Long articleId, Long viewCount) {
+        this.articleId = articleId;
+        this.viewCount = viewCount;
+    }
+
     public static ArticleViewCount init(Long articleId, Long viewCount) {
-        ArticleViewCount articleViewCount = new ArticleViewCount();
-        articleViewCount.articleId = articleId;
-        articleViewCount.viewCount = viewCount;
-        return articleViewCount;
+        return new ArticleViewCount(articleId, viewCount);
     }
 }
