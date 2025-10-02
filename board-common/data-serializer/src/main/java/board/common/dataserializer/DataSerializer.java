@@ -20,7 +20,7 @@ public final class DataSerializer {
                 .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false); // 역직렬화 없는 필드 에러 처리
     }
 
-    private static <T> T deserialize(String data, Class<T> clazz) {
+    public static <T> T deserialize(String data, Class<T> clazz) {
         try {
             return objectMapper.readValue(data, clazz);
         } catch (JsonProcessingException e) {

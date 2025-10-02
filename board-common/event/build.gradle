@@ -1,0 +1,3 @@
+dependencies {
+    implementation project(':board-common:data-serializer')
+}
