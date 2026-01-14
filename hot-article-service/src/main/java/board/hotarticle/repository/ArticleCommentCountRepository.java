@@ -21,7 +21,7 @@ public class ArticleCommentCountRepository {
 
     public Long read(Long articleId) {
         String result = redisTemplate.opsForValue().get(generateKey(articleId));
-        return result == null ? null : Long.valueOf(result);
+        return result == null ? 0L : Long.valueOf(result);
     }
 
     private String generateKey(Long articleId) {
