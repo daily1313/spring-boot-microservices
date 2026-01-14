@@ -2,9 +2,11 @@ package board.hotarticle.service.response;
 
 import board.hotarticle.client.ArticleClient;
 import lombok.Getter;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 
+@ToString
 @Getter
 public class HotArticleResponse {
 
