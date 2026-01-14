@@ -20,7 +20,7 @@ public class MessageRelayCoordinator {
 
     private final StringRedisTemplate redisTemplate;
 
-    @Value("${spring.application.name}")
+    @Value("${spring.application.main}")
     private String applicationName;
 
     private final String APP_ID = UUID.randomUUID().toString();
