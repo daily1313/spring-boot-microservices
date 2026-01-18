@@ -23,7 +23,7 @@ public class ArticleIdListRepository {
     public void add(Long boardId, Long articleId, Long limit) {
         redisTemplate.executePipelined((RedisCallback<?>) action -> {
             StringRedisConnection conn = (StringRedisConnection) action;
-            String key = generateKey(articleId);
+            String key = generateKey(boardId);
             conn.zAdd(key, 0, toPaddedString(articleId));
             conn.zRemRange(key, 0,- limit - 1);
             return null;
